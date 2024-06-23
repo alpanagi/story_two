@@ -13,11 +13,11 @@ fn show_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands
         .spawn(NodeBundle {
             style: Style {
-                top: Val::Px(300.),
-                width: Val::Percent(100.0),
-                position_type: PositionType::Absolute,
+                height: Val::Percent(100.),
+                width: Val::Percent(100.),
+                flex_direction: FlexDirection::Column,
                 justify_content: JustifyContent::Center,
-                align_items: AlignItems::FlexStart,
+                align_items: AlignItems::Center,
                 ..default()
             },
             ..default()
@@ -31,21 +31,7 @@ fn show_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
                     ..default()
                 },
             ));
-        });
 
-    commands
-        .spawn(NodeBundle {
-            style: Style {
-                top: Val::Px(330.),
-                width: Val::Percent(100.0),
-                position_type: PositionType::Absolute,
-                justify_content: JustifyContent::Center,
-                align_items: AlignItems::FlexStart,
-                ..default()
-            },
-            ..default()
-        })
-        .with_children(|parent| {
             parent.spawn(TextBundle::from_section(
                 "SUCCESS!",
                 TextStyle {
@@ -54,21 +40,7 @@ fn show_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
                     ..default()
                 },
             ));
-        });
 
-    commands
-        .spawn(NodeBundle {
-            style: Style {
-                top: Val::Px(360.),
-                width: Val::Percent(100.0),
-                position_type: PositionType::Absolute,
-                justify_content: JustifyContent::Center,
-                align_items: AlignItems::FlexStart,
-                ..default()
-            },
-            ..default()
-        })
-        .with_children(|parent| {
             parent.spawn(TextBundle::from_section(
                 "SUCCESS!",
                 TextStyle {

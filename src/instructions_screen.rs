@@ -3,7 +3,7 @@ use bevy::prelude::*;
 use crate::game_state::GameState;
 
 #[derive(Component)]
-struct InstructionsComponent;
+struct InstructionsScreenComponent;
 
 #[derive(Component)]
 struct PressAnyKeyText;
@@ -18,73 +18,71 @@ impl Plugin for InstructionsScreenPlugin {
 }
 
 fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
+    let mut press_any_key_text = TextBundle::from_section(
+        "PRESS ANY KEY",
+        TextStyle {
+            font: asset_server.load("PixelifySans-Medium.ttf"),
+            font_size: 32.0,
+            ..default()
+        },
+    );
+    press_any_key_text.visibility = Visibility::Visible;
+
     commands
         .spawn((
             NodeBundle {
                 style: Style {
-                    top: Val::Px(300.),
+                    height: Val::Percent(100.0),
                     width: Val::Percent(100.0),
-                    position_type: PositionType::Absolute,
+                    flex_direction: FlexDirection::Column,
                     justify_content: JustifyContent::Center,
-                    align_items: AlignItems::FlexStart,
+                    align_items: AlignItems::Center,
                     ..default()
                 },
-                visibility: Visibility::Visible,
                 ..default()
             },
-            InstructionsComponent,
+            InstructionsScreenComponent,
         ))
         .with_children(|parent| {
-            parent.spawn((TextBundle::from_section(
+            parent.spawn(TextBundle::from_section(
                 "MOVE WITH",
                 TextStyle {
                     font: asset_server.load("PixelifySans-Medium.ttf"),
                     font_size: 32.0,
                     ..default()
                 },
-            ),));
+            ));
+
+            parent.spawn(NodeBundle {
+                style: Style {
+                    height: Val::Px(180.0),
+                    width: Val::Percent(100.0),
+                    ..default()
+                },
+                ..default()
+            });
+
+            parent.spawn((press_any_key_text, PressAnyKeyText));
         });
 
     commands.spawn((
         SpriteBundle {
             texture: asset_server.load("instructions.png"),
-            transform: Transform::from_scale(Vec3::new(4.0, 4.0, 4.0))
-                .with_translation(Vec3::new(3.5, 0., 0.)),
+            sprite: Sprite {
+                custom_size: Some(Vec2::new(240., 160.)),
+                ..Default::default()
+            },
+            transform: Transform::from_xyz(4., 0., 0.),
             ..Default::default()
         },
-        InstructionsComponent,
+        InstructionsScreenComponent,
     ));
-
-    commands
-        .spawn((
-            NodeBundle {
-                style: Style {
-                    bottom: Val::Px(300.),
-                    width: Val::Percent(100.0),
-                    position_type: PositionType::Absolute,
-                    justify_content: JustifyContent::Center,
-                    align_items: AlignItems::FlexStart,
-                    ..default()
-                },
-                visibility: Visibility::Visible,
-                ..default()
-            },
-            InstructionsComponent,
-            PressAnyKeyText,
-        ))
-        .with_children(|parent| {
-            parent.spawn((TextBundle::from_section(
-                "PRESS ANY KEY",
-                TextStyle {
-                    font: asset_server.load("PixelifySans-Medium.ttf"),
-                    font_size: 32.0,
-                    ..default()
-                },
-            ),));
-        });
 }
 
-fn despawn(instructions_query: Query<Entity, With<InstructionsComponent>>, mut commands: Commands) {
+fn despawn(
+    instructions_query: Query<Entity, With<InstructionsScreenComponent>>,
+    mut commands: Commands,
+) {
     for entity in instructions_query.iter() {
         commands.entity(entity).despawn_recursive();
     }
