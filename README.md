@@ -4,6 +4,6 @@
 
 [Itch.io Link](https://invalidlifetime.itch.io/story-one)
 
-A basic bevy example game. Move up.
+A basic bevy example game.
 
 Controls: WASD
