@@ -1,4 +1,4 @@
-# STORY_ONE: Move Up
+# story_one: move up
 
 ![Cover Image](./art/cover_image.png)
 

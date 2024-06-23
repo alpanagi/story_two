@@ -1,3 +1,4 @@
 /target
 .DS_Store
 out/story_one*
+out/assets/*
