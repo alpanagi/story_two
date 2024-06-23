@@ -4,7 +4,7 @@ mod instructions_screen;
 mod player;
 mod success_screen;
 
-use bevy::prelude::*;
+use bevy::{asset::AssetMetaCheck, prelude::*};
 use game_camera::GameCameraPlugin;
 use instructions_screen::InstructionsScreenPlugin;
 use player::PlayerPlugin;
@@ -12,6 +12,7 @@ use success_screen::SuccessScreenPlugin;
 
 fn main() {
     App::new()
+        .insert_resource(AssetMetaCheck::Never)
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
         .add_plugins((
             GameCameraPlugin,
