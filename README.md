@@ -1,8 +1,8 @@
 # story_one: move up
 
-![Cover Image](./art/cover_image.png)
+![cover image](./art/cover_image.png)
 
-[Itch.io Link](https://invalidlifetime.itch.io/story-one)
+[itch.io html version](https://invalidlifetime.itch.io/story-one)
 
 A basic bevy example game.
 
