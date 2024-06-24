@@ -1,9 +1,11 @@
-# story_one: move up
+# story_two: escape
 
 ![cover image](./art/cover_image.png)
 
-[itch.io html version](https://invalidlifetime.itch.io/story-one)
+[itch.io html version](https://invalidlifetime.itch.io/story-two)
 
-A basic bevy example game.
+A basic game example game.
 
-Controls: WASD
+Adds: Collisions
+
+Controls: WASD / Arrow Keys

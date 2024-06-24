@@ -55,7 +55,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 
             parent.spawn(NodeBundle {
                 style: Style {
-                    height: Val::Px(142.0),
+                    height: Val::Px(112.0),
                     width: Val::Percent(100.0),
                     ..default()
                 },
@@ -69,7 +69,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         SpriteBundle {
             texture: asset_server.load("instructions.png"),
             sprite: Sprite {
-                custom_size: Some(Vec2::new(192., 128.)),
+                custom_size: Some(Vec2::new(336., 96.)),
                 ..Default::default()
             },
             ..Default::default()
