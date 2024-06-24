@@ -25,9 +25,9 @@ fn setup(
 ) {
     commands.spawn((
         MaterialMesh2dBundle {
-            mesh: Mesh2dHandle(meshes.add(Rectangle::new(40., 40.))),
+            mesh: Mesh2dHandle(meshes.add(Rectangle::new(30., 30.))),
             material: materials.add(Color::hex("#e8c170").unwrap()),
-            transform: Transform::from_xyz(0., -375., 0.),
+            transform: Transform::from_xyz(480. - 16., -512. + 16., 0.),
             ..Default::default()
         },
         Player,
@@ -46,24 +46,24 @@ fn movement(
     let mut player_transform = player_query.single_mut();
 
     if keys.just_pressed(KeyCode::KeyW) || keys.just_pressed(KeyCode::ArrowUp) {
-        if player_transform.translation.y < 360. {
-            player_transform.translation += Vec3::new(0., 50., 0.);
+        if player_transform.translation.y < 480. {
+            player_transform.translation += Vec3::new(0., 32., 0.);
 
-            if player_transform.translation.y > 360. {
+            if player_transform.translation.y > 480. {
                 next_state.set(GameState::Won);
             }
         }
     } else if keys.just_pressed(KeyCode::KeyS) || keys.just_pressed(KeyCode::ArrowDown) {
-        if player_transform.translation.y > -360. {
-            player_transform.translation += Vec3::new(0., -50., 0.);
+        if player_transform.translation.y > -480. {
+            player_transform.translation += Vec3::new(0., -32., 0.);
         }
     } else if keys.just_pressed(KeyCode::KeyA) || keys.just_pressed(KeyCode::ArrowLeft) {
-        if player_transform.translation.x > -360. {
-            player_transform.translation += Vec3::new(-50., 0., 0.);
+        if player_transform.translation.x > -480. {
+            player_transform.translation += Vec3::new(-32., 0., 0.);
         }
     } else if keys.just_pressed(KeyCode::KeyD) || keys.just_pressed(KeyCode::ArrowRight) {
-        if player_transform.translation.x < 360. {
-            player_transform.translation += Vec3::new(50., 0., 0.);
+        if player_transform.translation.x < 480. {
+            player_transform.translation += Vec3::new(32., 0., 0.);
         }
     }
 }

@@ -69,7 +69,7 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
         SpriteBundle {
             texture: asset_server.load("instructions.png"),
             sprite: Sprite {
-                custom_size: Some(Vec2::new(336., 96.)),
+                custom_size: Some(Vec2::new(288., 96.)),
                 ..Default::default()
             },
             ..Default::default()
