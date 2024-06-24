@@ -45,7 +45,7 @@ fn movement(
 
     let mut player_transform = player_query.single_mut();
 
-    if keys.just_pressed(KeyCode::KeyW) {
+    if keys.just_pressed(KeyCode::KeyW) || keys.just_pressed(KeyCode::ArrowUp) {
         if player_transform.translation.y < 360. {
             player_transform.translation += Vec3::new(0., 50., 0.);
 
@@ -53,15 +53,15 @@ fn movement(
                 next_state.set(GameState::Won);
             }
         }
-    } else if keys.just_pressed(KeyCode::KeyS) {
+    } else if keys.just_pressed(KeyCode::KeyS) || keys.just_pressed(KeyCode::ArrowDown) {
         if player_transform.translation.y > -360. {
             player_transform.translation += Vec3::new(0., -50., 0.);
         }
-    } else if keys.just_pressed(KeyCode::KeyA) {
+    } else if keys.just_pressed(KeyCode::KeyA) || keys.just_pressed(KeyCode::ArrowLeft) {
         if player_transform.translation.x > -360. {
             player_transform.translation += Vec3::new(-50., 0., 0.);
         }
-    } else if keys.just_pressed(KeyCode::KeyD) {
+    } else if keys.just_pressed(KeyCode::KeyD) || keys.just_pressed(KeyCode::ArrowRight) {
         if player_transform.translation.x < 360. {
             player_transform.translation += Vec3::new(50., 0., 0.);
         }
