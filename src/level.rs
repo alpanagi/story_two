@@ -41,7 +41,7 @@ fn spawn_map(
                 let pixel = image.get_pixel(i, j);
                 if pixel.0[0] == 0 && pixel.0[1] == 0 && pixel.0[2] == 0 {
                     commands.spawn(PbrBundle {
-                        mesh: meshes.add(Plane3d::default().mesh().size(1., 1.)),
+                        mesh: meshes.add(Plane3d::default().mesh().size(0.95, 0.95)),
                         material: material.clone(),
                         transform: Transform::from_xyz(
                             0.5 + i as f32 - image.width() as f32 / 2.,
