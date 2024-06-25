@@ -6,6 +6,7 @@ mod player;
 mod success_screen;
 
 use bevy::{asset::AssetMetaCheck, prelude::*};
+use bevy_rapier3d::plugin::{NoUserData, RapierPhysicsPlugin};
 use game_camera::GameCameraPlugin;
 use instructions_screen::InstructionsScreenPlugin;
 use level::LevelPlugin;
@@ -16,6 +17,7 @@ fn main() {
     App::new()
         .insert_resource(AssetMetaCheck::Never)
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
+        .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
         .add_plugins((
             GameCameraPlugin,
             LevelPlugin,
@@ -31,4 +33,5 @@ fn setup(mut window_query: Query<&mut Window>) {
     let mut window = window_query.single_mut();
 
     window.resolution.set(1024., 1024.);
+    window.resolution.set_scale_factor(1.0);
 }

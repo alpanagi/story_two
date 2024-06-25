@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy_rapier3d::prelude::*;
 
 #[derive(Resource)]
 struct Map {
@@ -40,16 +41,19 @@ fn spawn_map(
                 let image = image.clone().try_into_dynamic().unwrap().to_rgba8();
                 let pixel = image.get_pixel(i, j);
                 if pixel.0[0] == 0 && pixel.0[1] == 0 && pixel.0[2] == 0 {
-                    commands.spawn(PbrBundle {
-                        mesh: meshes.add(Plane3d::default().mesh().size(0.95, 0.95)),
-                        material: material.clone(),
-                        transform: Transform::from_xyz(
-                            0.5 + i as f32 - image.width() as f32 / 2.,
-                            0.,
-                            0.5 + j as f32 - image.height() as f32 / 2.,
-                        ),
-                        ..Default::default()
-                    });
+                    commands.spawn((
+                        PbrBundle {
+                            mesh: meshes.add(Plane3d::default().mesh().size(0.95, 0.95)),
+                            material: material.clone(),
+                            transform: Transform::from_xyz(
+                                0.5 + i as f32 - image.width() as f32 / 2.,
+                                0.,
+                                0.5 + j as f32 - image.height() as f32 / 2.,
+                            ),
+                            ..Default::default()
+                        },
+                        Collider::cuboid(0.95, 0.5, 0.95),
+                    ));
                 }
             }
         }
