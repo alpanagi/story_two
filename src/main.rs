@@ -33,5 +33,4 @@ fn setup(mut window_query: Query<&mut Window>) {
     let mut window = window_query.single_mut();
 
     window.resolution.set(1024., 1024.);
-    window.resolution.set_scale_factor(1.0);
 }
