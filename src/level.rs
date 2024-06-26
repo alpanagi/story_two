@@ -1,6 +1,8 @@
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
+use crate::game_state::GameState;
+
 #[derive(Resource)]
 struct Map {
     image: Option<Handle<Image>>,
@@ -11,7 +13,7 @@ impl Plugin for LevelPlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(Map { image: None })
             .add_systems(Startup, setup)
-            .add_systems(Update, spawn_map);
+            .add_systems(OnEnter(GameState::Playing), spawn_map);
     }
 }
 
