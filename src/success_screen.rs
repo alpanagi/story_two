@@ -20,6 +20,7 @@ fn show_screen(mut commands: Commands, asset_server: Res<AssetServer>) {
                 align_items: AlignItems::Center,
                 ..default()
             },
+            background_color: BackgroundColor::from(Color::hex("#172038").unwrap()),
             ..default()
         })
         .with_children(|parent| {

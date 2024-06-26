@@ -11,7 +11,6 @@ impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
         app.insert_state(GameState::Instructions)
             .add_systems(Startup, setup)
-            .add_systems(Update, movement.run_if(in_state(GameState::Instructions)))
             .add_systems(Update, movement.run_if(in_state(GameState::Playing)));
     }
 }
@@ -44,12 +43,6 @@ fn movement(
     mut next_state: ResMut<NextState<GameState>>,
     rapier_context: Res<RapierContext>,
 ) {
-    if keys.get_pressed().count() > 0 {
-        next_state.set(GameState::Playing);
-    } else {
-        return;
-    }
-
     let mut player_transform = player_query.single_mut();
 
     let mut offset = Vec3::ZERO;
@@ -69,6 +62,10 @@ fn movement(
         if player_transform.translation.x < 15. {
             offset = Vec3::new(1., 0., 0.);
         }
+    }
+
+    if offset.length() < 0.001 {
+        return;
     }
 
     if let None = rapier_context.cast_ray(
