@@ -4,8 +4,8 @@
 
 [itch.io html version](https://invalidlifetime.itch.io/story-two)
 
-A basic game example game.
+A basic game example.
 
-Adds: Collisions
+This version adds: Collisions
 
-Controls: WASD / Arrow Keys
+Controls: WASD/Arrow Keys

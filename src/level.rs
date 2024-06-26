@@ -32,7 +32,7 @@ fn spawn_map(
 ) {
     let material = materials.add(StandardMaterial {
         unlit: true,
-        base_color: Color::hex("#ebede9").unwrap(),
+        base_color: Color::WHITE,
         ..Default::default()
     });
 
